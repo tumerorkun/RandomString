@@ -1,5 +1,7 @@
 try{
+
   const fs = require('fs');
+  const readline = require('readline');
   const chars = ["a","b","c","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","0","1","2","3","4","5","6","7","8","9"];
   var ids=0, sayac=0, final = [], fileName = 'RandomStrings'
       komb = { min:6, max:20, syCount:100000, bMax:5 };
@@ -10,6 +12,17 @@ try{
        *
        */
   
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  rl.question('Her kombinasyondan kac adet olsun?(varsayilan:100000) ', (answer) => {
+    if ( answer != '' ) { komb.syCount = answer; }
+    rl.question('Tekrar sayisi?(varsayilan:5) ', (ans) => {
+      if ( ans != '' ) { komb.bMax = ans; }
+      console.log('islem baslatildi.');
+      baslat();
+      rl.close();
+    });
+  });
+
   fs.writeFileSync(fileName+'.txt','');
 
   function shuffle(a) {
@@ -50,14 +63,16 @@ try{
     fs.appendFileSync(fileName+'.txt',son.join(''));
   }
 
-  for ( var a = 0; a < komb.bMax; a++ ) {
-    for ( var i = komb.min; i <= komb.max; i++ ){
-      kombinasyon(chars,i,a);sayac=0;
+  function baslat() {
+    for ( var a = 0; a < komb.bMax; a++ ) {
+      for ( var i = komb.min; i <= komb.max; i++ ){
+        kombinasyon(chars,i,a);sayac=0;
+      }
+      yazdir();ids = ids+final.length;final=[];
+      console.log('Eklenen toplam random string sayisi: '+ids);
     }
-    yazdir();ids = ids+final.length;final=[];
-    console.log('Eklenen toplam random string sayisi: '+ids);
+    console.log('Bitti.');
   }
-  console.log('Bitti.');
 
 }catch(err){console.log(err);}
 /*
