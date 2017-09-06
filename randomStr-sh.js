@@ -13,23 +13,24 @@ try{
   }
   
   function kombinasyon(numArr, choose, blg) {
-    var n = numArr.length;
-    var c = [];
-    var basla = function(start, choose_) {
-      if (choose_ == 0) {
-        var arr = c.concat('');
-        shuffle(arr);
-        final.push(arr.join('')+'\r\n');
-        sayac++;
-      } else {
-        for (var i = start; i <= n - choose_; ++i) {
-          if(sayac == 100000){break;}
-          c.push(numArr[i]);
-          basla(i + 1, choose_ - 1);
-          c.pop();
+    var n = numArr.length,
+        c = [],
+        basla = function(start, choose_) {
+          if (choose_ == 0) {
+            var arr = c.concat('');
+            shuffle(arr);
+            final.push(arr.join('')+'\r\n');
+            sayac++;
+          }
+          else {
+            for (var i = start; i <= n - choose_; ++i) {
+              if(sayac == 100000){break;}
+              c.push(numArr[i]);
+              basla(i + 1, choose_ - 1);
+              c.pop();
+            }
+          }
         }
-      }
-    }
     basla(blg, choose);
   }
 
