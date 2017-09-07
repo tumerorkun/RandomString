@@ -12,7 +12,7 @@ try{
        *
        */
   
-  console.log('6 ile 20 karakterli random string olusturulacak.');
+  console.log('Minimum 6, maximum 20 karakterli RandomStrings olusturulacak.');
   const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
   rl.question('Her kombinasyondan kac adet olsun?(varsayilan:100000) ', (answer) => {
     if ( answer != '' ) { komb.syCount = answer; }
