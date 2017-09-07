@@ -77,7 +77,7 @@ try{
 
 }catch(err){console.log(err);}
 /*
-LOAD DATA INFILE 'random20li.txt'
+LOAD DATA INFILE 'randomString.txt'
 INTO TABLE users20
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\r\n'
